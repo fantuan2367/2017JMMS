@@ -24,7 +24,7 @@ PLAZA(PLAZA>1)=PLAZA(PLAZA>1)/6;
 
 if ishandle(h)
     set(h,'CData',PLAZA)
-    %pause(n)
+    pause(n)
 else
     figure('position',[20,50,200,700])
     h = imagesc(PLAZA);    
@@ -34,5 +34,5 @@ else
     plot([0,W]+0.5,[[0:L]',[0:L]']+0.5,'k')
     axis image
     set(gca, 'xtick', [], 'ytick', []);
-    %pause(n)
+    pause(n)
 end

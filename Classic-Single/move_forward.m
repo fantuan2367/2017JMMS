@@ -26,11 +26,12 @@ function [plaza, v, time,in_flow] = move_forward(plaza, v, time, vmax)
 %
 % zhou lvwen: zhou.lv.wen@gmail.com
 
-Service = 0.8; %服务能力
-dt = 0.5; %时间权重(越大越快)
+ichi=0.06899;ni=0.28768;sann=1101;
+% Service = [ni,sann,sann,ichi,ichi,ichi,ni,sann,sann]; %服务能力
+Service = [ni,ichi,ni,sann,sann,ni,ichi,sann,ichi]; %服务能力
 
 % Prob acceleration
-probac = 0.7;
+probac = 0.9;
 % Prob deceleration
 probdc = 1;
 % Prob of random deceleration
@@ -71,7 +72,7 @@ for i = 2:W-1
     elseif(plaza(booth_row,i) == 0)
         plaza(booth_row,i) = -3;%补上被冲掉的收费站
     else
-        if (plaza(booth_row,i) == 1)&&(plaza(booth_row+1,i) ~= 1)&&(rand > exp(-Service*dt)) % cars pass through service with exponential rate Service
+        if (plaza(booth_row,i) == 1)&&(plaza(booth_row+1,i) ~= 1)&&(rand > exp(-Service((i-1)/2))) % cars pass through service with exponential rate Service
             v(booth_row,i) = 1; % out booths
             in_flow=in_flow+1;
             time(booth_row,i)=0;%速度清零
